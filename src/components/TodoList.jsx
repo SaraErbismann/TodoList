@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
-import { AgGridReact } from 'ag-grid-react';
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
+import TodoTable from "./TodoTable";
 
 export default function TodoList () {
     //States for todo inputs and for storing todos
@@ -11,16 +9,7 @@ export default function TodoList () {
         date: ''
     });
     const [todos, setTodos] = useState([]);
-    //
     const gridRef = useRef();
-
-    const [colDefs, setColDefs] = useState([
-        {field: 'description', sortable: true, filter: true},
-        {field: 'priority', sortable: true, filter: true, 
-        cellStyle: params =>  params.value.toLowerCase() == 'high' ? {color: 'red'} : {color: 'black'}},
-        {field: 'date', sortable: true, filter: true}
-    ]);
-
 
 
     const handleDelete = () => {
@@ -59,18 +48,7 @@ export default function TodoList () {
         onChange={e => setTodo({...todo, date: e.target.value})}
         />
         <button onClick={handleClick}>Submit</button>
-        <button onClick={handleDelete}>Delete</button>
-        <div 
-        className="ag-theme-material"
-        style ={{height: 600}}
-        >
-            <AgGridReact
-            ref={gridRef}
-            onGridReady={params => gridRef.current = params.api}
-            rowData={todos}
-            columnDefs={colDefs}
-            rowSelection ="single"/>
-        </div>
+        <TodoTable todos={todos} handleDelete={handleDelete} />
 
         </>
     );
