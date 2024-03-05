@@ -17,6 +17,7 @@ export default function TodoTable({todos, handleDelete}) {
 
     return(
         <>
+        <button onClick={handleDelete}>Delete</button>
         <div 
         className="ag-theme-material"
         style ={{height: 600}}
@@ -27,7 +28,7 @@ export default function TodoTable({todos, handleDelete}) {
             rowData={todos}
             columnDefs={colDefs}
             rowSelection ="single"/>
-            <button onClick={handleDelete}>Delete</button>
+
         </div>
         </>
     );
