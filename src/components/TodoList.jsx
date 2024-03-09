@@ -5,6 +5,9 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function TodoList () {
     //States for todo inputs and for storing todos
@@ -55,11 +58,12 @@ export default function TodoList () {
             value={todo.priority}
             onChange={e => setTodo({...todo, priority: e.target.value})}
             />
-            <TextField 
-            label ="date"
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+            label ="Date"
             value={todo.date}
             onChange={e => setTodo({...todo, date: e.target.value})}
-            />
+            /></LocalizationProvider>
             <Button variant="contained" onClick={handleClick}>Submit</Button>
             <Button variant="outlined" color ="error" onClick={handleDelete}>Delete</Button>
         </Stack>
