@@ -8,6 +8,10 @@ import Stack from '@mui/material/Stack';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 
 export default function TodoList () {
     //States for todo inputs and for storing todos
@@ -53,16 +57,25 @@ export default function TodoList () {
             value={todo.description}
             onChange={e => setTodo({...todo, description: e.target.value})}
             />
-            <TextField 
-            label ="Priority" 
+           <FormControl>
+            <InputLabel id="priority-select-lable">Priority</InputLabel>
+            <Select 
+            labelId ="priority-select-lable" 
+            id="priority-select"
             value={todo.priority}
             onChange={e => setTodo({...todo, priority: e.target.value})}
-            />
+            style={{ width: '150px' }}
+            >
+                <MenuItem value={'Low'}>Low</MenuItem>
+                <MenuItem value={'Medium'}>Medium</MenuItem>
+                <MenuItem value={'High'}>High</MenuItem>
+            </Select>
+            </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
             label ="Date"
             value={todo.date}
-            onChange={e => setTodo({...todo, date: e.target.value})}
+            onChange={(date) => setTodo({ ...todo, date })}
             /></LocalizationProvider>
             <Button variant="contained" onClick={handleClick}>Submit</Button>
             <Button variant="outlined" color ="error" onClick={handleDelete}>Delete</Button>
