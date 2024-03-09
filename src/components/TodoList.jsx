@@ -12,8 +12,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
+import dayjs from "dayjs";
+import 'dayjs/locale/fi';
+
 
 export default function TodoList () {
+
     //States for todo inputs and for storing todos
     const [todo, setTodo] = useState({
         description: '',
@@ -71,11 +75,12 @@ export default function TodoList () {
                 <MenuItem value={'High'}>High</MenuItem>
             </Select>
             </FormControl>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
             <DatePicker
             label ="Date"
             value={todo.date}
-            onChange={(date) => setTodo({ ...todo, date })}
+            defaultValue={dayjs()}
+            onChange={(date) => setTodo({ ...todo, date: date.toISOString() })}
             /></LocalizationProvider>
             <Button variant="contained" onClick={handleClick}>Submit</Button>
             <Button variant="outlined" color ="error" onClick={handleDelete}>Delete</Button>
