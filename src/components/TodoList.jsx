@@ -16,6 +16,7 @@ import dayjs from "dayjs";
 import 'dayjs/locale/fi';
 
 
+
 export default function TodoList () {
 
     //States for todo inputs and for storing todos
@@ -28,10 +29,10 @@ export default function TodoList () {
     const gridRef = useRef();
 
     const [colDefs, setColDefs] = useState([
-        {field: 'description', sortable: true, filter: true},
-        {field: 'priority', sortable: true, filter: true, 
+        {field: 'description', sortable: true, filter: true, floatingFilter: true},
+        {field: 'priority', sortable: true, floatingFilter: true, filter: true, 
         cellStyle: params =>  params.value.toLowerCase() == 'high' ? {color: 'red'} : {color: 'black'}},
-        {field: 'date', sortable: true, filter: true}
+        {field: 'date', sortable: true, filter: true, floatingFilter: true}
     ]);
 
 
