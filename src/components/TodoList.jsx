@@ -131,6 +131,7 @@ export default function TodoList () {
             /></LocalizationProvider>
             <Button variant="contained" onClick={handleClick}>Submit</Button>
             <Button variant="outlined" color ="error" onClick={handleDelete}>Delete</Button>
+            <Button variant="outlined" color="secondary" onClick={() => setTodos([])}>Clear to do list</Button>
         </Stack>
         <div 
         className="ag-theme-material"
